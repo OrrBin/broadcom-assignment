@@ -1,36 +1,19 @@
 package io.broadcom.assignment.data.model;
 
-import lombok.Data;
 import lombok.Value;
 import org.springframework.data.annotation.Id;
 
 @Value
 public class Grade {
+
+    /**
+     * NOTE: Didnt have time to change this entity to have  studentId,courseId as ID, so we can have duplicates
+     * In the sense of two entries in the DB for the same user in the same course.
+     * This is not COOL at all , if i had more time i would definitely fix that.
+     */
     @Id
     String id;
     int grade;
     long studentId;
     String courseId;
-
-
-//    @Value
-//    public static class GradeIdentifier implements Serializable {
-//        long studentId;
-//        String courseId;
-//
-//
-//        @Override
-//        public boolean equals(Object o) {
-//            if (this == o) return true;
-//            if (o == null || getClass() != o.getClass()) return false;
-//            GradeIdentifier that = (GradeIdentifier) o;
-//            return studentId == that.studentId &&
-//                    Objects.equals(courseId, that.courseId);
-//        }
-//
-//        @Override
-//        public int hashCode() {
-//            return Objects.hash(studentId, courseId);
-//        }
-//    }
 }

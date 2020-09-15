@@ -44,7 +44,7 @@ public class TestCoursesRepository {
     @Test
     @Order(2)
     public void testPostCourse() {
-        ResponseEntity<Course> courseRes = this.restTemplate.postForEntity("http://localhost:" + port + "/" + "courses",
+        ResponseEntity<Course> courseRes = this.restTemplate.postForEntity("http://localhost:" + port + "/api/" + "courses",
                 createCourse(), Course.class);
         assertThat(courseRes.getStatusCode().is2xxSuccessful());
         Course course = courseRes.getBody();
@@ -55,7 +55,7 @@ public class TestCoursesRepository {
     @Test
     @Order(3)
     public void testGetCourse() {
-        Course course = this.restTemplate.getForObject("http://localhost:" + port + "/" + "courses" + "/" + id,
+        Course course = this.restTemplate.getForObject("http://localhost:" + port + "/api/" + "courses" + "/" + id,
                 Course.class);
         assert course != null;
         verifyCourse(course);
@@ -67,7 +67,7 @@ public class TestCoursesRepository {
         this.restTemplate.put("http://localhost:" + port + "/" + "courses",
                 createUpdatedUser(), Course.class);
 
-        Course course = this.restTemplate.getForObject("http://localhost:" + port + "/" + "courses" + "/" + id,
+        Course course = this.restTemplate.getForObject("http://localhost:" + port + "/api/" + "courses" + "/" + id,
                 Course.class);
         assert course != null;
         verifyUpdatedUser(course);
@@ -77,8 +77,8 @@ public class TestCoursesRepository {
     @Test
     @Order(5)
     public void testDeleteCourse() {
-        this.restTemplate.delete("http://localhost:" + port + "/" + "courses" + "/" + id);
-        Course course = this.restTemplate.getForObject("http://localhost:" + port + "/" + "courses" + "/" + id,
+        this.restTemplate.delete("http://localhost:" + port + "/api/" + "courses" + "/" + id);
+        Course course = this.restTemplate.getForObject("http://localhost:" + port + "/api/" + "courses" + "/" + id,
                 Course.class);
         assertThat(course == null);
     }

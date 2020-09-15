@@ -50,7 +50,7 @@ public class TestStudentsRepository {
     @Test
     @Order(2)
     public void testPostStudent() throws Exception {
-        ResponseEntity<Student> studentRes = this.restTemplate.postForEntity("http://localhost:" + port + "/" + "students",
+        ResponseEntity<Student> studentRes = this.restTemplate.postForEntity("http://localhost:" + port + "/api/" + "students",
                 createUser(), Student.class);
         assertThat(studentRes.getStatusCode().is2xxSuccessful());
         Student student = studentRes.getBody();
@@ -61,7 +61,7 @@ public class TestStudentsRepository {
     @Test
     @Order(3)
     public void testGetStudent() throws Exception {
-        Student student = this.restTemplate.getForObject("http://localhost:" + port + "/" + "students" + "/" + id,
+        Student student = this.restTemplate.getForObject("http://localhost:" + port + "/api/" + "students" + "/" + id,
                 Student.class);
         assert student != null;
         verifyUser(student);
@@ -73,7 +73,7 @@ public class TestStudentsRepository {
         this.restTemplate.put("http://localhost:" + port + "/" + "students",
                 createUpdatedUser(), Student.class);
 
-        Student student = this.restTemplate.getForObject("http://localhost:" + port + "/" + "students" + "/" + id,
+        Student student = this.restTemplate.getForObject("http://localhost:" + port + "/api/" + "students" + "/" + id,
                 Student.class);
         assert student != null;
         verifyUpdatedUser(student);
@@ -84,7 +84,7 @@ public class TestStudentsRepository {
     @Order(5)
     public void testDeleteStudent() throws Exception {
         this.restTemplate.delete("http://localhost:" + port + "/" + "students" + "/" + id);
-        Student studentRes = this.restTemplate.getForObject("http://localhost:" + port + "/" + "students" + "/" + id,
+        Student studentRes = this.restTemplate.getForObject("http://localhost:" + port + "/api/" + "students" + "/" + id,
                 Student.class);
         assertThat(studentRes == null);
     }
